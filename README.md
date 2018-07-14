@@ -12,12 +12,12 @@ username = my_username
 password = my_password
 ```
 
-
 ## commands
 
 export
 
+    ```bash
     sm export
-    sm export --time all
+    sm export --duration all
     sm export --time 3m
-
+    ```
