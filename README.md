@@ -28,6 +28,4 @@ password = my_password
 
 export
 
-    ```bash
     sm export_history --trades option
-    ```
