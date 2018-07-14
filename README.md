@@ -1,7 +1,15 @@
 # simple metrics for Robinhood
 Simple, humble, and direct metrics applied to RH trades
 
+<hr>
+# THIS IS IN ALPAH DEVELOPMENT. USE AT YOUR OWN RISK.
+
+<hr>
+<hr>
+<hr>
+
 ## install
+
 
 ## configs
 
@@ -14,10 +22,10 @@ password = my_password
 
 ## commands
 
-export
+export __(under development)__
 
     ```bash
-    sm export
-    sm export --duration all
-    sm export --time 3m
+    sm export_history
+    sm export_history --duration 3m
     ```
+
