@@ -2,7 +2,7 @@
 Simple, humble, and direct metrics applied to RH trades
 
 <hr>
-# THIS IS IN ALPAH DEVELOPMENT. USE AT YOUR OWN RISK.
+# THIS IS IN ALPHA DEVELOPMENT. USE AT YOUR OWN RISK.
 
 <hr>
 <hr>
