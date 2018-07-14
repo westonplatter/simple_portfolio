@@ -15,4 +15,4 @@ options = {
         'duration': '3m'}
 
 sm.export_stock_trades(account, options)
-sm.export_option_trades(account, options)
+sm.export_option_orders(account, options)

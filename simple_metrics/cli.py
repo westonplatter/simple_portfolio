@@ -1,9 +1,6 @@
 import click
 import functools
-# from .export import stock_trades
-# from .export import option_trades
-
-from . import export
+from . import export, fetch
 
 
 def get_username_password(config_file):
@@ -46,9 +43,13 @@ def export_history(debug, duration, config_file, trades, export_file):
     account = get_username_password(config_file)
 
     if trades == 'stock':
-        export.stock_trades(account, export_file)
+        # export.stock_trades(account, export_file)
+        raise("still under development")
     elif trades == 'option':
-        export.option_trades(account, export_file)
+        fetch_options = {}
+        option_orders = fetch.option_orders(account, fetch_options)
+        export_options = {}
+        export.option_orders(option_orders, export_options)
 
 
 if __name__ == '__main__':

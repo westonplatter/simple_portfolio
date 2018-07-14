@@ -8,7 +8,10 @@ Simple, humble, and direct metrics applied to RH trades
 <hr>
 <hr>
 
-## install
+## local development
+
+Git clone this repo and run `pip install . --process-dependency-links --editable`
+
 
 
 ## configs
@@ -16,16 +19,15 @@ Simple, humble, and direct metrics applied to RH trades
 in an `account.ini` file, provide username and password
 
 ```
+['account']
 username = my_username
 password = my_password
 ```
 
 ## commands
 
-export __(under development)__
+export
 
     ```bash
-    sm export_history
-    sm export_history --duration 3m
+    sm export_history --trades option
     ```
-
