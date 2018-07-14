@@ -8,10 +8,11 @@ setup(name='simple_metrics',
     url='https://www.python.org/sigs/simple_metrics/',
     packages=['simple_metrics'],
     install_requires=[
-        'click'
+        'click',
+        'Robinhood==1.0.1'
     ],
     dependency_links=[
-        'https://github.com/Jamonek/Robinhood/archive/1.0.1.zip',
+        'https://github.com/Jamonek/Robinhood/archive/1.0.1.zip#egg=Robinhood==1.0.1',
     ],
     entry_points='''
         [console_scripts]
