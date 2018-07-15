@@ -8,7 +8,7 @@ account = {
         'username': config['account']['username'],
         'password': config['account']['password']}
 
-fetch_options = {} # @todo add duration # {'duration': '3m'}
+fetch_options = {}
 
 orders = fetch.stock_trades(account, fetch_options)
 msg = "Fetched {} stock trades".format(len(orders))
