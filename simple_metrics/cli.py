@@ -56,7 +56,7 @@ def export_history(debug, duration, config_file, trades, export_file):
         click.echo("-- sm: Exporting to option_orders.csv")
         export.option_orders(option_orders, {})
 
-        click.echo("-- sm: Finished")
+    click.echo("-- sm: Finished")
 
 
 if __name__ == '__main__':

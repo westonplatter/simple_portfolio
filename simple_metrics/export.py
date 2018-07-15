@@ -17,8 +17,7 @@ def option_orders(option_orders, options = {}):
         with open(filename, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=headers)
             writer.writeheader()
-            for drow in drows:
-                writer.writerow(drow)
+            [writer.writerow(drow) for drow in drows]
     except IOError:
         print("I/O error")
 
@@ -33,8 +32,7 @@ def stock_orders(stock_orders, options = {}):
         with open(filename, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=headers)
             writer.writeheader()
-            for drow in drows:
-                writer.writerow(drow)
+            [writer.writerow(drow) for drow in drows]
     except IOError:
         print("I/O Error")
 
