@@ -23,6 +23,15 @@ option_orders = fetch.option_orders(account, {})
 export.option_orders(option_orders, {})
 ```
 
+## install
+```sh
+pip install simple_metrics --process-dependency-links
+```
+
+The package uses a forked version of
+[Robinhood](https://github.com/Jamonek/Robinhood), hence
+the need for  `--process-dependency-links`.
+
 ## package api
 
 Functionality includes:
@@ -49,11 +58,19 @@ password = my_password
 
 export
 
-    sm export_history --trades stock
-
-    sm export_history --trades option
-
+```bash
+# stocks
+sm export_history --trades stock
+# options
+sm export_history --trades option
+```
 
 ## local development
+Git clone this repo and run,
+```bash
+pip install . --process-dependency-links --editable
+```
 
-Git clone this repo and run `pip install . --process-dependency-links --editable`
+
+Adding `--editable` allows you to pull in code changes without
+having to run `pip install`.
