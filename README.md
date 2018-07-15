@@ -1,26 +1,26 @@
 # simple metrics for Robinhood
 Simple, humble, and direct metrics applied to RH trades
 
-<hr>
-# THIS IS IN ALPHA DEVELOPMENT. USE AT YOUR OWN RISK.
-<hr>
-
 ## example
 
-```
+```py
 from simple_metrics import fetch, export
 
 account = {
         'username': 'my username',
         'password': 'my password'}
 
+#
+# exports stock trades to -> stock_orders.csv
+#
 stock_orders = fetch.stock_trades(account, {})
 export.stock_orders(stock_orders, {})
-# exports -> stock_orders.csv
 
+#
+# exports -> option_orders.csv
+#
 option_orders = fetch.option_orders(account, {})
 export.option_orders(option_orders, {})
-# exports -> option_orders.csv
 ```
 
 ## package api
