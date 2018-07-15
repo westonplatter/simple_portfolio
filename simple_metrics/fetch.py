@@ -1,6 +1,3 @@
-# error in RH
-import dateutil
-
 from Robinhood import Robinhood
 
 

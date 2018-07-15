@@ -46,10 +46,13 @@ def export_history(debug, duration, config_file, trades, export_file):
         # export.stock_trades(account, export_file)
         raise("still under development")
     elif trades == 'option':
-        fetch_options = {}
-        option_orders = fetch.option_orders(account, fetch_options)
-        export_options = {}
-        export.option_orders(option_orders, export_options)
+        option_orders = fetch.option_orders(account, {})
+        click.echo("-- sm: Fetched {} option orders".format(len(option_orders)))
+
+        click.echo("-- sm: Exporting to option_orders.csv")
+        export.option_orders(option_orders, {})
+
+        click.echo("-- sm: Finished")
 
 
 if __name__ == '__main__':
