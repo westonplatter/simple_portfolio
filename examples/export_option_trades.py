@@ -17,4 +17,4 @@ print("Fetched {} option trades".format(len(option_orders)))
 
 export_options = {}
 export.option_orders(option_orders, export_options)
-print("finished writing option_orders to option_orders.csv")
+print("Finished writing option_orders to option_orders.csv")
