@@ -1,11 +1,16 @@
-from distutils.core import setup
+from setuptools import setup
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup(name='simple_metrics',
-    version='0.1.1',
+    version='0.1.5',
     description='Simple portfolio metrics for Robinhood',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Weston Platter',
     author_email='westonplatter@gmail.com',
-    url='https://www.python.org/sigs/simple_metrics/',
+    url='https://github.com/westonplatter/simple_metrics/',
     packages=['simple_metrics'],
     install_requires=[
         'click',

@@ -1,5 +1,5 @@
-# simple metrics for Robinhood
-Simple, humble, and direct metrics applied to RH trades
+# simple_metrics for Robinhood
+Simple, humble, and direct metrics applied to Robinhood trades.
 
 ## example
 
@@ -11,13 +11,13 @@ account = {
         'password': 'my password'}
 
 #
-# exports stock trades to -> stock_orders.csv
+# export stock trades to -> stock_orders.csv
 #
 stock_orders = fetch.stock_trades(account, {})
 export.stock_orders(stock_orders, {})
 
 #
-# exports -> option_orders.csv
+# export -> option_orders.csv
 #
 option_orders = fetch.option_orders(account, {})
 export.option_orders(option_orders, {})
@@ -70,7 +70,6 @@ Git clone this repo and run,
 ```bash
 pip install . --process-dependency-links --editable
 ```
-
 
 Adding `--editable` allows you to pull in code changes without
 having to run `pip install`.
