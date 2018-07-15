@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='simple_metrics',
-    version='0.1.0',
+    version='0.1.1',
     description='Simple portfolio metrics for Robinhood',
     author='Weston Platter',
     author_email='westonplatter@gmail.com',
