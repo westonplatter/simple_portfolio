@@ -1,6 +1,7 @@
 config.debug.ini
 dev_data/*
 option_orders.csv
+stock_orders.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -11,10 +11,10 @@ account = {
 
 
 fetch_options = {}
-option_orders = fetch.option_orders(account, fetch_options)
-print("Fetched {} option trades".format(len(option_orders)))
+stock_orders = fetch.stock_orders(account, fetch_options)
+print("Fetched {} stock trades".format(len(stock_orders)))
 
 
 export_options = {}
-export.option_orders(option_orders, export_options)
-print("Finished writing option_orders to option_orders.csv")
+export.stock_orders(stock_orders, export_options)
+print("Finished writing stock_orders to stock_orders.csv")

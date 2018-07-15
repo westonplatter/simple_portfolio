@@ -43,8 +43,12 @@ def export_history(debug, duration, config_file, trades, export_file):
     account = get_username_password(config_file)
 
     if trades == 'stock':
-        # export.stock_trades(account, export_file)
-        raise("still under development")
+        stock_orders = fetch.stock_orders(account, {})
+        click.echo("-- sm: Fetched {} stock orders".format(len(stock_orders)))
+
+        click.echo("-- sm: Exporting to stock_orders.cvs")
+        export.stock_orders(stock_orders, {})
+
     elif trades == 'option':
         option_orders = fetch.option_orders(account, {})
         click.echo("-- sm: Fetched {} option orders".format(len(option_orders)))
@@ -52,7 +56,7 @@ def export_history(debug, duration, config_file, trades, export_file):
         click.echo("-- sm: Exporting to option_orders.csv")
         export.option_orders(option_orders, {})
 
-        click.echo("-- sm: Finished")
+    click.echo("-- sm: Finished")
 
 
 if __name__ == '__main__':

@@ -5,22 +5,22 @@ def fetch_json_by_url(client, url):
     return client.session.get(url).json()
 
 
-def stock_trades(account, options={}):
+def stock_orders(account, options={}):
     client = Robinhood()
     client.login(username=account['username'], password=account['password'])
 
-    orders = []
+    stock_orders = []
     more_orders = True
 
     res = client.order_history()
-    orders.extend(res['results'])
+    stock_orders.extend(res['results'])
     cursor = res['next']
     while cursor:
         res = fetch_json_by_url(client, cursor)
-        orders.extend(res['results'])
+        stock_orders.extend(res['results'])
         cursor = res['next']
 
-    return orders
+    return stock_orders
 
 
 def option_orders(account, options={}):
