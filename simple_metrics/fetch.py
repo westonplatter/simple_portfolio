@@ -6,8 +6,7 @@ def fetch_json_by_url(client, url):
 
 
 def stock_orders(account, options={}):
-    client = Robinhood()
-    client.login(username=account['username'], password=account['password'])
+    client = _get_client(account)
 
     stock_orders = []
     more_orders = True
@@ -24,8 +23,7 @@ def stock_orders(account, options={}):
 
 
 def option_orders(account, options={}):
-    client = Robinhood()
-    client.login(username=account['username'], password=account['password'])
+    client = _get_client(account)
 
     options_orders = []
     more_orders = True
@@ -40,3 +38,29 @@ def option_orders(account, options={}):
         cursor = res['next']
 
     return options_orders
+
+
+def positions(account, options={}):
+    client = _get_client(account)
+
+    positions = []
+
+    res = client.positions()
+    positions.extend(res['results'])
+    cursor = res['next']
+    while cursor:
+        res = fetch_json_by_url(client, cursor)
+        positions.extend(res['results'])
+        cursor = res['next']
+
+    for index,x in enumerate(positions):
+        data = fetch_json_by_url(client, x['instrument'])
+        positions[index]['instrument_data'] = data
+
+    return positions
+
+
+def _get_client(account):
+    client = Robinhood()
+    client.login(username=account['username'], password=account['password'])
+    return client

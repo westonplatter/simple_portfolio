@@ -1,12 +1,6 @@
 import csv
 from . import fetch
 
-def stock_trades(account, options):
-    stock_orders = fetch.stock_trades(account, options)
-    write_rows_of_dictionaries()
-
-    print('exporting RH stock history')
-
 def option_orders(option_orders, options = {}):
     drows = option_orders
     cols = [*drows[0].keys()]
@@ -66,3 +60,21 @@ def ordered_stock_cols(cols):
         return expected_headers_ordered
     else:
         return cols
+
+
+def positions(positions, options = {}):
+    rows = positions
+    cols = [*rows[0].keys()]
+    headers = cols
+    filename = "all_positions.csv"
+    _write_file(filename, headers, rows)
+
+
+def _write_file(filename, headers, rows):
+    try:
+        with open(filename, 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=headers)
+            writer.writeheader()
+            [writer.writerow(row) for row in rows]
+    except IOError:
+        print("I/O Error")
