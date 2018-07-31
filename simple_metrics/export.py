@@ -6,29 +6,7 @@ def option_orders(option_orders, options = {}):
     cols = [*drows[0].keys()]
     headers = order_option_cols(cols)
     filename = "option_orders.csv"
-
-    try:
-        with open(filename, 'w') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=headers)
-            writer.writeheader()
-            [writer.writerow(drow) for drow in drows]
-    except IOError:
-        print("I/O error")
-
-
-def stock_orders(stock_orders, options = {}):
-    drows = stock_orders
-    cols = [*drows[0].keys()]
-    headers = ordered_stock_cols(cols)
-    filename = "stock_orders.csv"
-
-    try:
-        with open(filename, 'w') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=headers)
-            writer.writeheader()
-            [writer.writerow(drow) for drow in drows]
-    except IOError:
-        print("I/O Error")
+    _write_file(filename, headers, drows)
 
 
 def order_option_cols(cols):
@@ -45,6 +23,14 @@ def order_option_cols(cols):
         return expected_headers_ordered
     else:
         return cols
+
+
+def stock_orders(stock_orders, options = {}):
+    drows = stock_orders
+    cols = [*drows[0].keys()]
+    headers = ordered_stock_cols(cols)
+    filename = "stock_orders.csv"
+    _write_file(filename, headers, drows)
 
 
 def ordered_stock_cols(cols):
