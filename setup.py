@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='simple_metrics',
-    version='0.1.5',
+    version='0.1.6',
     description='Simple portfolio metrics for Robinhood',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,6 +15,7 @@ setup(name='simple_metrics',
     install_requires=[
         'click',
         'Robinhood==1.0.1',
+        'fast_arrow==0.0.2',
     ],
     dependency_links=[
         # # this git commit hash is master as of July 14th. It's 64 commits ahead of release 1.0.1

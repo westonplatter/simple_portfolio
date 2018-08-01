@@ -59,5 +59,21 @@ def export_history(debug, duration, config_file, trades, export_file):
     click.echo("-- sm: Finished")
 
 
+@cli.command()
+@click.option('--config-file', default="config.ini", required=False)
+@click.option('--kind', default="option",
+    type=click.Choice(['stock', 'option']), required=False)
+@click.option('--export-file', default="default.csv", required=False)
+@common_options
+def export_positions(debug, config_file, kind, export_file):
+    if debug and config_file == "config.ini":
+        config_file = "config.debug.ini"
+    account = get_username_password(config_file)
+
+    if kind == 'option':
+        option_positions = fetch.option_positions(account, {})
+        click.echo("-- sm: Fetched {} option positions".format(len(option_positions)))
+        export.option_positions(option_positions, {})
+
 if __name__ == '__main__':
     cli()
