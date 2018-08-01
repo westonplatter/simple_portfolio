@@ -1,4 +1,5 @@
 from Robinhood import Robinhood
+import fast_arrow
 
 
 def fetch_json_by_url(client, url):
@@ -58,6 +59,24 @@ def positions(account, options={}):
         positions[index]['instrument_data'] = data
 
     return positions
+
+def option_positions(account, options={}):
+    """
+    use fast_arrow to fetch positions
+    """
+    username = account["username"]
+    password = account["password"]
+    from fast_arrow.resources.auth import Auth
+    token = Auth.login(username, password)
+
+    from fast_arrow.resources.option_position import OptionPosition
+    all_option_positions = OptionPosition.all(token)
+    open_option_positions = list(filter(lambda p: float(p["quantity"]) > 0.0, all_option_positions))
+
+    bearer = Auth.get_oauth_token(token)
+    results = OptionPosition.append_marketdata(bearer, open_option_positions)
+
+    return results
 
 
 def _get_client(account):

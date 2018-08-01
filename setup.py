@@ -15,6 +15,7 @@ setup(name='simple_metrics',
     install_requires=[
         'click',
         'Robinhood==1.0.1',
+        'fast_arrow==0.0.2',
     ],
     dependency_links=[
         # # this git commit hash is master as of July 14th. It's 64 commits ahead of release 1.0.1
