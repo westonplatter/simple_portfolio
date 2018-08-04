@@ -12,7 +12,7 @@ account = {
 fetch_options = {}
 option_positions = fetch.option_positions(account, fetch_options)
 
-msg = "Fetched {} open option positions".format(len(positions))
+msg = "Fetched {} open option positions".format(len(option_positions))
 pprint.pprint(msg)
 
 pprint.pprint("First option position in array ...\n\n\n")

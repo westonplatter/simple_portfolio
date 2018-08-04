@@ -10,10 +10,10 @@ account = {
         'password': config['account']['password']}
 
 fetch_options = {}
-positions = fetch.positions(account, fetch_options)
+stock_positions = fetch.positions(account, fetch_options)
 
-msg = "Fetched {} stock trades".format(len(positions))
+msg = "Fetched {} stock positions".format(len(stock_positions))
 pprint.pprint(msg)
 
 pprint.pprint("First position in array ...\n\n\n")
-pprint.pprint(positions[0])
+pprint.pprint(stock_positions[0])
