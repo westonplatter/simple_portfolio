@@ -10,7 +10,7 @@ account = {
 
 fetch_options = {}
 
-orders = fetch.stock_trades(account, fetch_options)
+orders = fetch.stock_orders(account, fetch_options)
 msg = "Fetched {} stock trades".format(len(orders))
 print(msg)
 
