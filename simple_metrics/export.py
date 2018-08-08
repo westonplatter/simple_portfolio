@@ -67,8 +67,8 @@ def option_positions(drows, options={}):
 def ordered_option_position_cols(cols):
     # custom ordering of expected columns
     expected_headers_ordered = [
-        'id', 'chain_symbol', 'type', 'strike_price', 'expiration_date',
-        'quantity', 'average_price',
+        'id', 'chain_symbol', 'type', 'option_type', 'strike_price',
+        'expiration_date', 'quantity', 'average_price',
 
         'adjusted_mark_price', 'ask_price', 'ask_size', 'bid_price',
         'bid_size',
