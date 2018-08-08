@@ -14,7 +14,7 @@ setup(name='simple_metrics',
     packages=['simple_metrics'],
     install_requires=[
         'click',
-        'fast_arrow==0.0.3',
+        'fast_arrow==0.0.4',
     ],
     entry_points='''
         [console_scripts]

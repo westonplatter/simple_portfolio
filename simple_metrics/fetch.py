@@ -33,13 +33,17 @@ def positions(account, options={}):
 
 def option_positions(account, options={}):
     token = _get_token(account["username"], account["password"])
+
     all_option_positions = OptionPosition.all(token)
-    open_option_positions = list(filter(lambda p: float(p["quantity"]) > 0.0, all_option_positions))
+    ops = list(filter(lambda p: float(p["quantity"]) > 0.0, all_option_positions))
+
     bearer = _get_bearer(token)
-    results = OptionPosition.append_marketdata(bearer, open_option_positions)
-    return results
 
+    ops = OptionPosition.append_marketdata_list(bearer, ops)
+    ops = OptionPosition.append_instrumentdata_list(bearer, ops)
+    ops = OptionPosition.humanize_numbers(ops)
 
+    return ops
 
 
 def _get_token(username, password):

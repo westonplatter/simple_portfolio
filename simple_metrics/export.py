@@ -57,29 +57,34 @@ def positions(positions, options = {}):
 
 def option_positions(drows, options={}):
     filename = "option_positions.csv"
+    if "filename" in options:
+        filename = filename
     cols = list(drows[0].keys())
     headers = ordered_option_position_cols(cols)
-    _write_file(filename, headers, drows)
+    _write_file_subset(filename, headers, drows)
 
 
 def ordered_option_position_cols(cols):
+    # custom ordering of expected columns
     expected_headers_ordered = [
-        'id', 'chain_symbol', 'type', 'quantity',
+        'id', 'chain_symbol', 'type', 'strike_price', 'expiration_date',
+        'quantity', 'average_price',
 
-        'adjusted_mark_price', 'ask_price', 'ask_size', 'bid_price', 'bid_size',
-        'high_price',
-        'last_trade_price', 'last_trade_size', 'low_price', 'mark_price',
-        'open_interest', 'previous_close_date', 'previous_close_price',
-        'volume', 'chance_of_profit_long', 'chance_of_profit_short', 'delta',
-        'gamma', 'implied_volatility', 'rho', 'theta', 'vega',
+        'adjusted_mark_price', 'ask_price', 'ask_size', 'bid_price',
+        'bid_size',
+        'mark_price', 'low_price', 'high_price',
+        'last_trade_price', 'last_trade_size',
+        'previous_close_date', 'previous_close_price',
 
-        'intraday_average_open_price', 'account', 'intraday_quantity', 'option', 'created_at', 'updated_at', 'average_price', 'chain_id', 'pending_expired_quantity', 'pending_buy_quantity', 'url', 'pending_sell_quantity', 'break_even_price',  'instrument'
+        'open_interest', 'volume', 'chance_of_profit',
+        'implied_volatility', 'delta', 'theta', 'gamma', 'rho', 'vega',
+
+        'intraday_average_open_price', 'account', 'intraday_quantity',
+        'option', 'created_at', 'updated_at', 'chain_id',
+        'pending_expired_quantity', 'pending_buy_quantity', 'url',
+        'pending_sell_quantity', 'break_even_price',  'instrument'
     ]
-
-    if set(cols) == set(expected_headers_ordered):
-        return expected_headers_ordered
-    else:
-        return cols
+    return expected_headers_ordered
 
 
 def _write_file(filename, headers, rows):
@@ -88,5 +93,17 @@ def _write_file(filename, headers, rows):
             writer = csv.DictWriter(csvfile, fieldnames=headers)
             writer.writeheader()
             [writer.writerow(row) for row in rows]
+    except IOError:
+        print("I/O Error")
+
+
+def _write_file_subset(filename, headers, rows):
+    try:
+        with open(filename, 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=headers)
+            writer.writeheader()
+            for row in rows:
+                row_to_write = dict((k, row[k]) for k in headers if k in row)
+                writer.writerow(row_to_write)
     except IOError:
         print("I/O Error")
