@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='simple_portfolio',
-    version='0.0.1',
+    version='0.1.7',
     description='Simple portfolio metrics for Robinhood',
     long_description=long_description,
     long_description_content_type="text/markdown",
