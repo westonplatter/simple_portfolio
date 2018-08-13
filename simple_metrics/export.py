@@ -1,12 +1,12 @@
 import csv
-from . import fetch
+
 
 def option_orders(option_orders, options = {}):
     drows = option_orders
     cols = [*drows[0].keys()]
     headers = order_option_cols(cols)
-    filename = "option_orders.csv"
-    _write_file(filename, headers, drows)
+    fn = _get_config_or_default(options, "filename", "option_orders.csv")
+    _write_file_get_header_values(fn, headers, drows)
 
 
 def order_option_cols(cols):
@@ -29,8 +29,8 @@ def stock_orders(stock_orders, options = {}):
     drows = stock_orders
     cols = [*drows[0].keys()]
     headers = ordered_stock_cols(cols)
-    filename = "stock_orders.csv"
-    _write_file(filename, headers, drows)
+    fn = _get_config_or_default(options, "filename", "stock_orders.csv")
+    _write_file_get_header_values(fn, headers, drows)
 
 
 def ordered_stock_cols(cols):
@@ -48,25 +48,21 @@ def ordered_stock_cols(cols):
 
 
 def positions(positions, options = {}):
-    rows = positions
-    cols = [*rows[0].keys()]
+    drows = positions
+    cols = list(drows[0].keys())
     headers = cols
-    filename = "all_positions.csv"
-    _write_file(filename, headers, rows)
+    fn = _get_config_or_default(options, "filename", "stock_positions.csv")
+    _write_file_get_header_values(fn, headers, drows)
 
 
 def option_positions(drows, options={}):
-    filename = "option_positions.csv"
-    if "filename" in options:
-        filename = filename
-    cols = list(drows[0].keys())
-    headers = ordered_option_position_cols(cols)
-    _write_file_subset(filename, headers, drows)
+    fn = _get_config_or_default(options, "filename", "option_positions.csv")
+    headers = expected_option_position_fields()
+    _write_file_get_header_values(fn, headers, drows)
 
 
-def ordered_option_position_cols(cols):
-    # custom ordering of expected columns
-    expected_headers_ordered = [
+def expected_option_position_fields():
+    return [
         'id', 'chain_symbol', 'type', 'option_type', 'strike_price',
         'expiration_date', 'quantity', 'average_price',
 
@@ -84,20 +80,9 @@ def ordered_option_position_cols(cols):
         'pending_expired_quantity', 'pending_buy_quantity', 'url',
         'pending_sell_quantity', 'break_even_price',  'instrument'
     ]
-    return expected_headers_ordered
 
 
-def _write_file(filename, headers, rows):
-    try:
-        with open(filename, 'w') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=headers)
-            writer.writeheader()
-            [writer.writerow(row) for row in rows]
-    except IOError:
-        print("I/O Error")
-
-
-def _write_file_subset(filename, headers, rows):
+def _write_file_get_header_values(filename, headers, rows):
     try:
         with open(filename, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=headers)
@@ -107,3 +92,10 @@ def _write_file_subset(filename, headers, rows):
                 writer.writerow(row_to_write)
     except IOError:
         print("I/O Error")
+
+
+def _get_config_or_default(options, key, default):
+    if key in options:
+        return options[key]
+    else:
+        return default

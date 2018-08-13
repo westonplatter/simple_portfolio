@@ -10,13 +10,12 @@ account = {
         'password': config['account']['password']}
 
 
-fetch_options = {}
+fetch_options = { "only_open": False }
 positions = fetch.option_positions(account, fetch_options)
 print("Fetched {} positions".format(len(positions)))
 
 
-fn = "option_positions.csv"
+fn = "option_positions_all.csv"
 export_options = { "filename": fn }
-
 export.option_positions(positions, export_options)
 print("Finished writing positions to {}".format(fn))
