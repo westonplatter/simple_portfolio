@@ -1,4 +1,4 @@
-from simple_metrics import fetch, export
+from simple_portfolio import fetch, export
 import configparser
 
 config = configparser.ConfigParser()
@@ -15,6 +15,8 @@ stock_orders = fetch.stock_orders(account, fetch_options)
 print("Fetched {} stock trades".format(len(stock_orders)))
 
 
-export_options = {}
+fn = "stock_orders.csv"
+export_options = {"filename": fn }
+
 export.stock_orders(stock_orders, export_options)
-print("Finished writing stock_orders to stock_orders.csv")
+print("Finished writing stock_orders to {}".format(fn))

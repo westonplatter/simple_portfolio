@@ -1,4 +1,4 @@
-from simple_metrics import fetch
+from simple_portfolio import fetch
 import configparser
 import pprint
 

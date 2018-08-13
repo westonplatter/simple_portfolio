@@ -18,28 +18,31 @@ def stock_orders(account, options={}):
 def option_orders(account, options={}):
     token = _get_token(account["username"], account["password"])
     orders = OptionOrder.all(token)
-    if ("only_filled" in options) and options["only_filled"]:
-        orders = list(filter(lambda x: x["state"] == "filled", orders))
     return orders
 
 
 def positions(account, options={}):
     token = _get_token(account["username"], account["password"])
     ps = StockPosition.all(token)
-    if ("only_open" in options) and options["only_open"]:
-        ps = list(filter(lambda x: float(x["quantity"]) > 0.0, ps))
     return ps
 
 
 def option_positions(account, options={}):
+    only_open = _get_config_or_default(options, "only_open", True)
+
     token = _get_token(account["username"], account["password"])
-    all_option_positions = OptionPosition.all(token)
-    open_option_positions = list(filter(lambda p: float(p["quantity"]) > 0.0, all_option_positions))
     bearer = _get_bearer(token)
-    results = OptionPosition.append_marketdata(bearer, open_option_positions)
-    return results
 
+    ops = OptionPosition.all(bearer)
 
+    if not only_open:
+        return ops
+    else:
+        ops = list(filter(lambda p: float(p["quantity"]) > 0.0, ops))
+        ops = OptionPosition.mergein_marketdata_list(bearer, ops)
+        ops = OptionPosition.mergein_instrumentdata_list(bearer, ops)
+        ops = OptionPosition.humanize_numbers(ops)
+        return ops
 
 
 def _get_token(username, password):
@@ -50,3 +53,9 @@ def _get_token(username, password):
 def _get_bearer(token):
     bearer = Auth.get_oauth_token(token)
     return bearer
+
+def _get_config_or_default(options, key, default):
+    if key in options:
+        return options[key]
+    else:
+        return default
