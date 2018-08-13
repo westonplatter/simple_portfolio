@@ -1,4 +1,4 @@
-from simple_metrics import fetch, export
+from simple_portfolio import fetch, export
 from fast_arrow import OptionOrder
 import configparser
 
