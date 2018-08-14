@@ -82,6 +82,17 @@ def expected_option_position_fields():
     ]
 
 
+def option_events(drows, export_options={}):
+    fn = _get_config_or_default(export_options, "filename", "option_events.csv")
+    headers = expected_option_event_fields()
+    _write_file_get_header_values(fn, headers, drows)
+
+def expected_option_event_fields():
+    return [
+        'id', 'option','chain_id', 'state', 'type', 'direction', 'quantity', 'equity_components', 'position',
+        'updated_at', 'created_at',   'underlying_price', 'cash_component', 'event_date',  'total_cash_amount', 'account'
+    ]
+
 def _write_file_get_header_values(filename, headers, rows):
     try:
         with open(filename, 'w') as csvfile:

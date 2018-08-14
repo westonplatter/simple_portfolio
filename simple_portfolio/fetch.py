@@ -2,6 +2,7 @@ from fast_arrow import (
     Auth,
     StockOrder,
     StockPosition,
+    OptionEvent,
     OptionPosition,
     OptionOrder
 )
@@ -43,6 +44,18 @@ def option_positions(account, options={}):
         ops = OptionPosition.mergein_instrumentdata_list(bearer, ops)
         ops = OptionPosition.humanize_numbers(ops)
         return ops
+
+
+def option_events(account, fetch_options={}):
+    token = _get_token(account["username"], account["password"])
+    bearer = _get_bearer(token)
+    option_events = OptionEvent.all(bearer)
+
+    for oe in option_events:
+        if len(oe["equity_components"]) > 0:
+            oe['symbol'] = oe["equity_components"][0]["symbol"]
+            
+    return option_events
 
 
 def _get_token(username, password):

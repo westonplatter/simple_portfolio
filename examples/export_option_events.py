@@ -11,11 +11,12 @@ account = {
 
 
 fetch_options = {}
-positions = fetch.positions(account, fetch_options)
-print("Fetched {} positions".format(len(positions)))
+events = fetch.option_events(account, fetch_options)
+print("Fetched {} option_events".format(len(events)))
 
-fn = "positions.csv"
+
+fn = "option_events.csv"
 export_options = { "filename": fn }
 
-export.positions(positions, export_options)
-print("Finished writing positions to {}".format(fn)
+export.option_events(events, export_options)
+print("Finished writing option_events to {}".format(fn))
