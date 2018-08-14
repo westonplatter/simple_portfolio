@@ -89,7 +89,7 @@ def option_events(drows, export_options={}):
 
 def expected_option_event_fields():
     return [
-        'id', 'option','chain_id', 'state', 'type', 'direction', 'quantity', 'equity_components', 'position',
+        'id', 'option','chain_id', 'symbol', 'state', 'type', 'direction', 'quantity', 'equity_components', 'position',
         'updated_at', 'created_at',   'underlying_price', 'cash_component', 'event_date',  'total_cash_amount', 'account'
     ]
 
