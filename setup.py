@@ -11,7 +11,7 @@ setup(name='simple_portfolio',
     author='Weston Platter',
     author_email='westonplatter@gmail.com',
     url='https://github.com/westonplatter/simple_portfolio/',
-    packages=['simple_metrics'],
+    packages=['simple_portfolio'],
     install_requires=[
         'click',
         'fast_arrow==0.0.5',

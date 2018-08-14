@@ -18,7 +18,6 @@ print("Fetched {} option trades".format(len(option_orders)))
 # humanize_numbers
 option_orders = OptionOrder.humanize_numbers(option_orders)
 
-
 fn = "option_orders.csv"
 export_options = { "filename": fn }
 export.option_orders(option_orders, export_options)
