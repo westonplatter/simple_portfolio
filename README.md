@@ -1,5 +1,5 @@
 # simple_metrics for Robinhood
-Simple, humble, and direct metrics applied to Robinhood trades.
+Simple portfolio metrics applied to your Robinhood portfolio.
 
 ## example
 
