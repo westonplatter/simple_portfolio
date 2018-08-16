@@ -16,7 +16,7 @@ option_orders = fetch.option_orders(account, fetch_options)
 print("Fetched {} option trades".format(len(option_orders)))
 
 # humanize_numbers
-option_orders = OptionOrder.humanize_numbers(option_orders)
+# option_orders = OptionOrder.humanize_numbers(option_orders)
 
 fn = "option_orders.csv"
 export_options = { "filename": fn }

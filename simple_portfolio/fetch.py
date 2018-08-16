@@ -19,7 +19,9 @@ def stock_orders(account, options={}):
 
 def option_orders(account, options={}):
     token = _get_token(account["username"], account["password"])
-    orders = OptionOrder.all(token)
+    bearer = _get_bearer(token)
+    option_orders = OptionOrder.all(token)
+    orders = OptionOrder.humanize_numbers(option_orders)
     return orders
 
 

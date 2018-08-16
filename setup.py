@@ -15,6 +15,8 @@ setup(name='simple_portfolio',
     install_requires=[
         'click',
         'fast_arrow==0.0.5',
+        "pandas",
+        "numpy"
     ],
     entry_points='''
         [console_scripts]
