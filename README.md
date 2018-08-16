@@ -1,7 +1,7 @@
 # simple_metrics for Robinhood
 Simple, humble, and direct metrics applied to Robinhood trades.
 
-## example
+## example 1
 
 ```py
 from simple_metrics import fetch, export
@@ -23,14 +23,17 @@ option_orders = fetch.option_orders(account, {})
 export.option_orders(option_orders, {})
 ```
 
+## example 2
+
+Run the `calculate_options.py` script  in the examples folder, it generates total and daily returns, as well as fetching greeks for open option positions.
+
+![Options Example](examples/picture-calculate.png)
+
+
 ## install
 ```sh
-pip install simple_metrics --process-dependency-links
+pip install simple_metrics
 ```
-
-The package uses a forked version of
-[Robinhood](https://github.com/Jamonek/Robinhood), hence
-the need for  `--process-dependency-links`.
 
 ## package api
 
@@ -40,30 +43,6 @@ Functionality includes:
 - Fetch Option order history
 - Export Stock order history
 - Export Option order history
-
-
-## command line usage
-
-### config
-
-in an `account.ini` file, provide username and password
-
-```
-['account']
-username = my_username
-password = my_password
-```
-
-### cli commands
-
-export
-
-```bash
-# stocks
-sm export_history --trades stock
-# options
-sm export_history --trades option
-```
 
 ## local development
 Git clone this repo and run,
