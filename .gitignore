@@ -1,5 +1,5 @@
 config.debug.ini
-dev_data/*
+data/*
 *.csv
 
 # Byte-compiled / optimized / DLL files
