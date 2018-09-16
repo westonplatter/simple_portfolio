@@ -3,11 +3,10 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('config.debug.ini')
-
-
-account = {
-        'username': config['account']['username'],
-        'password': config['account']['password']}
+account = dict(
+        username= config['account']['username'],
+        password= config['account']['password']
+)
 
 
 fetch_options = {}

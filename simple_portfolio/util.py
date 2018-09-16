@@ -1,5 +1,6 @@
-# def _get_config_or_default(options, key, default):
-#     if key in options:
-#         return options[key]
-#     else:
-#         return default
+
+def get_key(options, k, default):
+    if k in options:
+        return options[k]
+    else:
+        return default
