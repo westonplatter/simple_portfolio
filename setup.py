@@ -14,7 +14,7 @@ setup(name='simple_portfolio',
     packages=['simple_portfolio'],
     install_requires=[
         "click",
-        "fast_arrow>=0.2.7",
+        "fast_arrow",
         "pandas",
         "numpy"
     ],

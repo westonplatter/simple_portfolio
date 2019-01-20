@@ -1,18 +1,21 @@
 from simple_portfolio import fetch, export
-from fast_arrow import OptionOrder
 import configparser
+from fast_arrow import OptionOrder, Client
 
+
+#
+# initialize fast_arrow client and authenticate
+#
 config = configparser.ConfigParser()
 config.read('config.debug.ini')
-
-
-account = {
-        'username': config['account']['username'],
-        'password': config['account']['password']}
+u = config['account']['username']
+p = config['account']['password']
+client = Client(username = u, password = p)
+client.authenticate()
 
 
 fetch_options = {}
-option_orders = fetch.option_orders(account, fetch_options)
+option_orders = fetch.option_orders(client, fetch_options)
 print("Fetched {} option trades".format(len(option_orders)))
 
 # humanize_numbers

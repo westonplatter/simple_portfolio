@@ -1,21 +1,31 @@
 from simple_portfolio import fetch, export
 import configparser
+from fast_arrow import Client
 
+
+#
+# initialize fast_arrow client and authenticate
+#
 config = configparser.ConfigParser()
 config.read('config.debug.ini')
-account = dict(
-        username= config['account']['username'],
-        password= config['account']['password']
-)
+u = config['account']['username']
+p = config['account']['password']
+client = Client(username = u, password = p)
+client.authenticate()
 
 
-fetch_options = {}
-positions = fetch.option_positions(account, fetch_options)
+#
+# fetch positions
+#
+fopts = {}
+positions = fetch.option_positions(client, fopts)
 print("Fetched {} positions".format(len(positions)))
 
 
+#
+# export positions
+#
 fn = "option_positions.csv"
-export_options = { "filename": fn }
-
-export.option_positions(positions, export_options)
+eopts = {"filename": fn}
+export.option_positions(positions, opts)
 print("Finished writing positions to {}".format(fn))
