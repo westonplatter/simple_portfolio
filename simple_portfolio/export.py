@@ -11,12 +11,19 @@ def option_orders(option_orders, options = {}):
 
 def order_option_cols(cols):
     expected_headers_ordered = [
-        "id", "chain_id", "ref_id",  "updated_at", "created_at", "time_in_force",
-        "chain_symbol", "state", "type", "direction", "price", "premium", "processed_premium",
-        "quantity", "pending_quantity", "processed_quantity",
-        "opening_strategy", "closing_strategy", "legs",
-        "trigger", "response_category",
-        "cancel_url", "canceled_quantity",
+        'id', 'execution_id', 'ref_id', 'chain_id', 'option',
+        'created_at', 'updated_at',
+        'chain_symbol', 'symbol',
+        'opening_strategy', 'closing_strategy',
+        'state',
+        'time_in_force',
+        'trigger', 'direction', 'pending_quantity',
+        'processed_quantity',
+        'canceled_quantity', 'quantity',
+        'order_type', 'contract_type',
+        'leg', 'strike_price', 'expiration_date',
+        'side', 'position_effect', 'ratio_quantity',
+        'price',
     ]
 
     if set(cols) == set(expected_headers_ordered):
@@ -87,11 +94,13 @@ def option_events(drows, export_options={}):
     headers = expected_option_event_fields()
     _write_file_get_header_values(fn, headers, drows)
 
+
 def expected_option_event_fields():
     return [
         'id', 'option','chain_id', 'symbol', 'state', 'type', 'direction', 'quantity', 'equity_components', 'position',
         'updated_at', 'created_at',   'underlying_price', 'cash_component', 'event_date',  'total_cash_amount', 'account'
     ]
+
 
 def _write_file_get_header_values(filename, headers, rows):
     try:

@@ -1,21 +1,24 @@
 from simple_portfolio import fetch, export
 import configparser
+from fast_arrow import Client
+
 
 #
-# create account dictionary
+# initialize fast_arrow client and authenticate
 #
 config = configparser.ConfigParser()
 config.read('config.debug.ini')
-account = dict(
-    username = config['account']['username'],
-    password = config['account']['password']
-)
+u = config['account']['username']
+p = config['account']['password']
+client = Client(username = u, password = p)
+client.authenticate()
+
 
 #
 # fetch open options, and only return the open positions
 #
 fetch_options = { "only_open": False }
-positions = fetch.option_positions(account, fetch_options)
+positions = fetch.option_positions(client, fetch_options)
 print("Fetched {} positions".format(len(positions)))
 
 
